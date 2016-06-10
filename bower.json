@@ -1,0 +1,23 @@
+{
+  "name": "audiovis",
+  "version": "0.0.0",
+  "homepage": "",
+  "authors": [
+    ""
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*",
+    "material-design-lite": "*"
+  }
+}

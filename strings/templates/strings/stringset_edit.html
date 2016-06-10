@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block body %}
+    <form id="stringsetAddForm">
+        {{form}}
+        <br />
+        <hr />
+        <input id="scaleLength" />
+        <button id="stringAdd" type="button">
+            Add string
+        </button>
+    </form>
+
+    <div id="addStringPopup">
+        <select id="stringGauge">
+            {% for string in strings %}
+                <option value="{{string.pk}}">
+                    {{string.gauge_imperial}}
+                </option>
+            {% endfor %}
+        </select>
+        <select id="stringNote">
+            {% for note in notes %}
+                <option value="{{note}}">
+                    {{note}}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <script>
+        new StringSetForm();
+    </script>
+{% endblock %}

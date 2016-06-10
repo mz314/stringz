@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block body %}
+<table>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                No. strings
+            </th>
+            <th>
+                Strings (high to low)
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stringset in stringsets %}
+        <tr>
+            <td>
+                {{stringset.name}}
+            </td>
+            <td>
+                {{stringset.stringcount}}
+            </td>
+            <td>
+                <ul>
+                    {% for stringsetstring in stringset.get_stringset_strings %}
+                    <li>{{stringsetstring.string.gauge_imperial}}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <a href="{% url 'string_set' set=stringset.pk %}">More</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

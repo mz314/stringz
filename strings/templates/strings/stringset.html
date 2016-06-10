@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block body %}
+    <div>Name: {{stringset.name}}</div>
+    <div>Strings:</div>
+    <table border="1" width="100%">
+        <thead>
+            <tr>
+                <th>
+                    Gauge
+                </th>
+                <th>
+                    Note
+                </th>
+                <th>
+                    Pitch [Hz]
+                </th>
+                <th>
+                    Tension
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for string in stringset.get_stringset_strings %}
+                <tr>
+                    <td>
+                        {{string.string.gauge_imperial}}
+                    </td>
+                    <td>
+                        {{string.note}}
+                    </td>
+                    <td>    
+                        {{string.get_pitch}}
+                    </td>
+                    <td>
+                        <ul>
+                        {% for scale in stringset.scale_lengths.all %}
+                            <li>
+                                {{scale.scale_imperial}}'/{{scale.scale_metric}}cm 
+                                
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {{string.get_tension}}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

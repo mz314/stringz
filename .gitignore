@@ -1,0 +1,6 @@
+/venv
+/db.sqlite3
+/static
+/static_files/static
+/node_modules
+*.pyc
