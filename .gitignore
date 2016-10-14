@@ -4,3 +4,4 @@
 /static_files/static
 /node_modules
 *.pyc
+/.vagrant
