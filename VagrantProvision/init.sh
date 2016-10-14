@@ -15,5 +15,5 @@ pip install psycopg2
 export DJANGO_SETTINGS_MODULE='stringz.settings_vagrant'
 python3 ./manage.py migrate
 echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'm@il.xx', 'test')" | python3 manage.py shell
-
+chmod a+rwx /home/vagrant/venv -R
 

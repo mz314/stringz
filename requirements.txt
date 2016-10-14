@@ -1,4 +1,6 @@
 Django==1.9
 django-extensions
 pint
-
+djangorestframework
+markdown
+django-filter
