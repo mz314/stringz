@@ -48,12 +48,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Provisioning Scripts
   # --------------------
+config.vm.provision "file", source: "VagrantProvision/superuser.py", destination: "/home/vagrant/superuser.py"
 config.vm.provision "shell", path: "VagrantProvision/init.sh"
 config.vm.provision "shell", path: "VagrantProvision/runserver.sh", run: "always"
- # config.vm.provision :shell, inline: "sleep 10; service postgresql restart;"
- # config.vm.provision :shell, inline: "service redis-server restart;"
- # config.vm.provision :shell, inline: "service mysql restart;"
- # config.vm.provision :shell, inline: "service apache2 restart;", run: "always"
-#  config.vm.provision :shell, inline: "service mongodb restart;"
+config.vm.provision "file", source: "VagrantProvision/nginx.conf", destination: "/home/vagrant/nginx.conf"
+config.vm.provision "file", source: "VagrantProvision/uwsgi.ini", destination: "/home/vagrant/uwsgi.ini"
+config.vm.provision "file", source: "VagrantProvision/uwsgi.include", destination: "/home/vagrant/uwsgi.include"
+# config.vm.provision "file", source: "VagrantProvision/wsgi.py", destination: "/home/vagrant/wsgi.py"
+# config.vm.provision "shell", path: "VagrantProvision/nginx.sh"
 end
 

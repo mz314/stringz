@@ -1,4 +1,5 @@
 sudo su
+service nginx stop
 source /home/vagrant/venv/bin/activate
 cd /vagrant
 
