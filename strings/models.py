@@ -42,6 +42,7 @@ class String(models.Model):
     material = models.CharField(max_length=128, choices=MATERIAL_CHOICES)
     winding = models.CharField(max_length=128, choices=WINDING_CHOICES)
     gauge_imperial = models.DecimalField(max_digits=8, decimal_places=8)
+    brand = models.ForeignKey('brands.Brand', null=True, blank=True)
     #unit_weight_imperial = models.DecimalField(max_digits=20, decimal_places=20)
     
     

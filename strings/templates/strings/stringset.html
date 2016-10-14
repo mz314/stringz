@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block body %}
-    <form>
-
-        <div>Name: {{stringset.name}}</div>
+    <form method="POST">
+        {% csrf_token %}
+        <div>Name: {{form.name}}</div>
         <div>Strings:</div>
         <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
             <thead>
@@ -20,16 +20,16 @@
                         Tension
                     </th>
                     <th>
-                       <button 
-                           class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored"
-                           type="button"
-                           >
-                             <i class="material-icons">
-                                 add
-                             </i>
+                        <button 
+                            class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored"
+                            type="button"
+                            >
+                            <i class="material-icons">
+                                add
+                            </i>
                         </button>
-                        
-                       
+
+
                     </th>
                 </tr>
             </thead>
@@ -37,10 +37,31 @@
                 {% for string in stringset.get_stringset_strings %}
                     <tr>
                         <td>
-                            {{string.string.gauge_imperial}}
+                            <select name="string_pk[]">
+                                {% for s in strings %}
+                                    <option value="{{s.pk}}"
+                                            {% if s.pk == string.string.pk %}
+                                                selected="selected"
+                                            {% endif %}
+                                            >
+                                        {{s.brand.name}} {{s.gauge_imperial}}
+                                    </option>
+                                {% endfor %}
+                            </select>
                         </td>
                         <td>
-                            {{string.note}}
+                            <select name="note[]">
+                            {% for n in notes %}
+                                <option 
+                                    value="{{n}}"
+                                    {% if n == string.note %}
+                                        selected="selected"
+                                    {% endif %} 
+                                    >
+                                    {{n}}
+                                </option>
+                            {% endfor %}
+                            </select>
                         </td>
                         <td>    
                             {{string.get_pitch}}
@@ -57,11 +78,12 @@
                             {{string.get_tension}}
                         </td>
                         <td>
-                            
+
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <button type="submit">Save</button>
     </form>
 {% endblock %}

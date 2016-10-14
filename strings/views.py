@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import View
 from strings.forms import StringForm
-from strings.forms import StringSetForm
+from strings.forms import StringSetForm, StringStringsetForm
 from strings.models import String, StringSet
-from strings.notes import Constants
+from strings.notes import Constants, get_note_choice
 
 
 class StringsView(View):
@@ -37,20 +37,26 @@ class StringSetsView(View):
             'form': form,
             'stringsets': stringsets,
     })
-    
+
+
 def stringset(request, set):
     stringset = StringSet.objects.get(pk=set)
+    strings = String.objects.all()
+    if request.method == 'POST':
+        form = StringSetForm(request.POST, instance=stringset)
+        if form.is_valid():
+            form.save()
+            #TODO redirect here
+    else:
+        form = StringSetForm(instance=stringset)
+
     return render(request, 'strings/stringset.html', {
         'stringset': stringset,
+        'form': form,
+        'strings': strings,
+        'notes': get_note_choice(flat=True),
     })    
     
-def stringset_edit(request, set):
-    strings = String.objects.all()
-    form = StringSetForm()
-    return render(request, 'strings/stringset.html', {
-        'strings': strings,
-        'notes': Notes.get_note_choice(flat=True),
-        'form': form,
-    })
+
     
 

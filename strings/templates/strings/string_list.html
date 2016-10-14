@@ -4,10 +4,13 @@
     <thead>
         <tr>
             <th>
-                Gauge [inch]
+                Brand
             </th>
             <th>
-                Gauge [mm]
+                Type
+            </th>
+            <th>
+                Gauge
             </th>
         </tr>
     </thead>
@@ -16,11 +19,15 @@
     {% for string in strings %}
     <tr>
         <td>
-            {{string.gauge_imperial}}
+            {{string.brand.name}}
         </td>
         <td>
-            {{string.gauge_metric}}
+            {{string.get_winding_display}}
         </td>
+        <td>
+            {{string.gauge_imperial}}
+        </td>
+        
     </tr>
     {% endfor %}
     </tbody>
