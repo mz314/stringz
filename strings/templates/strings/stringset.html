@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
-    <form method="POST">
+    <form method="POST" id="stringset-form">
         {% csrf_token %}
         <div>Name: {{form.name}}</div>
         <div>Strings:</div>
@@ -51,16 +51,16 @@
                         </td>
                         <td>
                             <select name="note[]">
-                            {% for n in notes %}
-                                <option 
-                                    value="{{n}}"
-                                    {% if n == string.note %}
-                                        selected="selected"
-                                    {% endif %} 
-                                    >
-                                    {{n}}
-                                </option>
-                            {% endfor %}
+                                {% for n in notes %}
+                                    <option 
+                                        value="{{n}}"
+                                        {% if n == string.note %}
+                                            selected="selected"
+                                        {% endif %} 
+                                        >
+                                        {{n}}
+                                    </option>
+                                {% endfor %}
                             </select>
                         </td>
                         <td>    
@@ -75,7 +75,7 @@
                                     </li>
                                 {% endfor %}
                             </ul>
-                            {{string.get_tension}}
+                            Tension {{string.get_tension}}
                         </td>
                         <td>
 
@@ -86,4 +86,7 @@
         </table>
         <button type="submit">Save</button>
     </form>
+    <script>
+        new StringSetForm('#stringset-form');
+    </script>
 {% endblock %}
