@@ -4,3 +4,4 @@ pint
 djangorestframework
 markdown
 django-filter
+django-debug-toolbar
