@@ -77,6 +77,10 @@ class StringSet(models.Model):
     def get_stringset_strings(self):
         return StringStringSet.objects.filter(stringset=self)
     
+    @property
+    def strings(self):
+        return self.get_stringset_strings()
+    
     def __str__(self):
         return self.name
     
